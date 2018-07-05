@@ -1,0 +1,77 @@
+@host = 202.121.178.131
+@port = 8080
+
+POST http://{{host}}:{{port}}/ls HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+path=girls/P01 有孚测试项目/设计文件
+
+###
+
+POST http://{{host}}:{{port}}/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+path=test/test2/test3/testupload.jpg
+&slice_cnt=1
+
+###
+
+GET http://{{host}}:{{port}}/ HTTP/1.1
+
+###
+
+POST http://{{host}}:{{port}}/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="seq"
+
+0
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="token"
+
+2b77c037acfa44ce6ff1f49bbd3964eb
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="test.jpg"
+
+
+< ./test.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+POST http://{{host}}:{{port}}/rename HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+path=newname.jpg
+&name=test.jpg
+
+###
+
+POST http://{{host}}:{{port}}/mv HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+path=testdir/test.jpg
+&new_path=test.jpg
+
+###
+
+POST http://{{host}}:{{port}}/cp HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+path=test.jpg
+&new_path=testdir/test.jpg
+
+###
+
+POST http://{{host}}:{{port}}/rm HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+path=testdir/test.jpg
+
+###
+
+POST http://{{host}}:{{port}}/rmdir HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+path=testdir
